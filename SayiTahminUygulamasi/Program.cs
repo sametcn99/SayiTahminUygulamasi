@@ -1,15 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SayiTahmin
 {
+    class ZorlukSeviyeleri
+    {
+        int kod;
+        string zorluk, aralık, hak, kpuan;
+    }
     class Program
     {
+
         static void Main(string[] args)
         {
-            int girilensayi;
-            int tahmin = 0;
-            int seviye;
+            int girilensayi, tahmin = 0, puan = 0, seviye;
             char cvp;
+            void Puanlama()
+            {
+
+                if (seviye == 1)
+                {
+                    Console.WriteLine("+10 Puan Kazandınız");
+                    puan = puan + 10;
+                }
+                else if (seviye == 2)
+                {
+                    puan = puan + 50;
+                    Console.WriteLine("+50 Puan Kazandınız");
+                }
+                else if (seviye == 3)
+                {
+                    puan = puan + 100;
+                    Console.WriteLine("+100 Puan Kazandınız");
+                }
+            }
             Random rnd = new Random();
             try
             {
@@ -21,12 +45,13 @@ namespace SayiTahmin
                     {
                         Console.Clear();
                         Console.WriteLine(
-                                "////////////////////////////\n" +
-                                "Kolay[1]: Aralık 1-50 Hak 10\n" +
-                                "Orta[2] : Aralık 1-100 Hak 7\n" +
-                                "Zor[3]  : Aralık 1-200 Hak 5\n" +
-                                "////////////////////////////\n" +
-                                "Zorluk Seviyesi Seçiniz:");
+                                "////////////////////////////////////////////////////\n" +
+                                "Kolay[1]: Aralık 1-50 Hak 10 Kazandırdığı puan: 10\n" +
+                                "Orta[2] : Aralık 1-100 Hak 7 Kazandırdığı puan: 50\n" +
+                                "Zor[3]  : Aralık 1-200 Hak 5 Kazandırdığı puan: 100\n" +
+                                "////////////////////////////////////////////////////\n" +
+                                "Zorluk Seviyesi Seçiniz:\n" +
+                                "Toplam Puanınız:" + puan);
                         seviye = Convert.ToInt32(Console.ReadLine());
                     } while (seviye != 1 && seviye != 2 && seviye != 3);
                     Console.Clear();
@@ -49,6 +74,7 @@ namespace SayiTahmin
                             break;
                     }
                     hak--;
+                    Console.WriteLine("Tutulan sayı:" + tahmin);
                     while (hak >= 0)
                     {
                         Console.WriteLine("Lütfen bir sayı giriniz:");
@@ -57,6 +83,12 @@ namespace SayiTahmin
                         {
                             Console.Clear();
                             Console.WriteLine("TEBRİKLER!!!\n" + sayac + ".denemede bildiniz!");
+                            if (sayac == 1)
+                            {
+                                Console.WriteLine("1. Denemede bildiğiniz için +50 Puan kazandınız.");
+                                puan = puan + 50;
+                            }
+                            Puanlama();
                             break;
                         }
                         else if (girilensayi + 5 > tahmin)
@@ -64,24 +96,28 @@ namespace SayiTahmin
                             Console.Clear();
                             Console.WriteLine("Zorluk seviyesi:" + seviye);
                             Console.WriteLine("Çok Yaklaştınız!!!\nAşağı!\n" + sayac + ". hakkınızı kullandınız. Kalan hak:" + hak);
+                            Puanlama();
                         }
                         else if (girilensayi > tahmin)
                         {
                             Console.Clear();
                             Console.WriteLine("Zorluk seviyesi:" + seviye);
                             Console.WriteLine("Aşağı!\n" + sayac + ". hakkınızı kullandınız. Kalan hak:" + hak);
+                            Puanlama();
                         }
                         else if (girilensayi + 5 < tahmin)
                         {
                             Console.Clear();
                             Console.WriteLine("Zorluk seviyesi:" + seviye);
                             Console.WriteLine("Çok Yaklaştınız!!!\nYukarı!\n" + sayac + ". hakkınızı kullandınız. Kalan hak:" + hak);
+                            Puanlama();
                         }
                         else if (girilensayi < tahmin)
                         {
                             Console.Clear();
                             Console.WriteLine("Zorluk seviyesi:" + seviye);
                             Console.WriteLine("Yukarı!\n" + sayac + ". hakkınızı kullandınız. Kalan hak:" + hak);
+                            Puanlama();
                         }
                         else if (hak == 0)
                         {
@@ -92,7 +128,11 @@ namespace SayiTahmin
                         sayac++;
                         hak--;
                     }
-                    Console.WriteLine("Tekrar Oynamak için E\nÇıkış için herhangi bir tuşa basınız.");
+                    Console.WriteLine("Toplam Puan:" + puan + "\nTekrar Oynamak için E\nÇıkış için herhangi bir tuşa basınız.");
+                    if (hak == 0)
+                    {
+                        puan = 0;
+                    }
                     cvp = char.Parse(Console.ReadLine().ToLower());
                 } while (cvp == 'e');
             }
