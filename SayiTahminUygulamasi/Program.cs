@@ -8,7 +8,6 @@ namespace SayiTahmin
         {
             int girilensayi;
             int tahmin = 0;
-            int hak = 0;
             int seviye;
             char cvp;
             Random rnd = new Random();
@@ -17,6 +16,7 @@ namespace SayiTahmin
                 do
                 {
                     int sayac = 1;
+                    int hak = 0;
                     do
                     {
                         Console.Clear();
@@ -35,17 +35,17 @@ namespace SayiTahmin
                         case 1:
                             tahmin = rnd.Next(1, 50);
                             hak = 10;
-                            Console.WriteLine("1 ile 10 arası rastgele bir sayı üretildi. 5 hakkınız bulunmakta.");
+                            Console.WriteLine("1 ile 50 arası rastgele bir sayı üretildi. 10 hakkınız bulunmakta.");
                             break;
                         case 2:
                             tahmin = rnd.Next(1, 100);
                             hak = 7;
-                            Console.WriteLine("1 ile 25 arası rastgele bir sayı üretildi. 3 hakkınız bulunmakta.");
+                            Console.WriteLine("1 ile 100 arası rastgele bir sayı üretildi. 7 hakkınız bulunmakta.");
                             break;
                         case 3:
                             tahmin = rnd.Next(1, 200);
                             hak = 5;
-                            Console.WriteLine("1 ile 50 arası rastgele bir sayı üretildi. 1 hakkınız bulunmakta.");
+                            Console.WriteLine("1 ile 200 arası rastgele bir sayı üretildi. 5 hakkınız bulunmakta.");
                             break;
                     }
                     hak--;
