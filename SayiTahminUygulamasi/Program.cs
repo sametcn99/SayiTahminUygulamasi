@@ -8,7 +8,6 @@ namespace SayiTahmin
         {
             int girilensayi;
             int tahmin = 0;
-            
             int hak = 0;
             int seviye;
             char cvp;
