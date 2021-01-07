@@ -48,7 +48,6 @@ namespace SayiTahmin
                             Console.WriteLine("1 ile 50 arası rastgele bir sayı üretildi. 1 hakkınız bulunmakta.");
                             break;
                     }
-                    Console.WriteLine("tutulan sayı:" + tahmin);
                     hak--;
                     while (hak >= 0)
                     {
